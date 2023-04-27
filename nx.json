@@ -19,30 +19,34 @@
     }
   },
   "defaultBase": "main",
+  "namedInputs": {
+    "globals": ["{workspaceRoot}/.github/workflows/ci.yml"],
+    "default": ["{projectRoot}/**/*", "globals"]
+  },
   "targetDefaults": {
     "prepack": {
-      "inputs": ["{workspaceRoot}/.github/workflows/ci.yml"],
+      "inputs": ["default"],
       "dependsOn": ["^prepack"],
       "outputs": ["{projectRoot}/dist", "{projectRoot}/schema"]
     },
     "test:types": {
-      "inputs": ["{workspaceRoot}/.github/workflows/ci.yml"],
+      "inputs": ["default"],
       "dependsOn": [{ "projects": ["nuxi", "nuxt"], "target": "prepack" }]
     },
     "test:fixtures": {
-      "inputs": ["{workspaceRoot}/.github/workflows/ci.yml"],
+      "inputs": ["default"],
       "dependsOn": [{ "projects": ["nuxi", "nuxt"], "target": "prepack" }]
     },
     "test:unit": {
-      "inputs": ["{workspaceRoot}/.github/workflows/ci.yml"],
+      "inputs": ["default"],
       "dependsOn": [{ "projects": ["nuxi"], "target": "prepack" }]
     },
     "typecheck": {
-      "inputs": ["{workspaceRoot}/.github/workflows/ci.yml"],
+      "inputs": ["default"],
       "dependsOn": ["^prepack"]
     },
     "lint": {
-      "inputs": ["{workspaceRoot}/.github/workflows/ci.yml"],
+      "inputs": ["default"],
       "dependsOn": [{ "projects": ["nuxi"], "target": "prepack" }]
     }
   }
